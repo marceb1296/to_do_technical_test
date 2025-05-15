@@ -56,9 +56,9 @@ The backend service will be up and running, with all dependencies handled automa
     > npm install
 
 3. Start the development server:
-   pnpm dev
-   or
-   npm run dev
+   > pnpm dev
+   > or
+   > npm run dev
 
 The application should automatically open in your default browser. You can now interact with the to-do interface.
 
