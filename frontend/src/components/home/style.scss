@@ -1,0 +1,133 @@
+section {
+	padding: 1em;
+
+	.todo-form {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+
+		input {
+			flex-grow: 1;
+			padding: 0.75rem 1rem;
+			border-radius: 8px;
+			border: 2px solid #a8bfe89a;
+			font-size: 1rem;
+			transition: border-color 0.3s ease;
+
+			&:focus {
+				outline: none;
+				border-color: #4a90e2;
+				box-shadow: 0 0 6px rgba(74, 144, 226, 0.5);
+			}
+		}
+
+		button {
+			background-color: #3a77bd;
+			border: none;
+			padding: 0.75rem 1rem;
+			border-radius: 8px;
+			color: white;
+			font-weight: 600;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+
+			&:hover {
+				background-color: #3064ad;
+			}
+		}
+	}
+
+	.todo-list {
+		margin-top: 2rem;
+		list-style: none;
+		padding: 0;
+	}
+
+	.todo-item {
+		display: flex;
+		flex-direction: column;
+		padding: 0.75rem 1rem;
+		border-radius: 8px;
+		margin-bottom: 0.8rem;
+		background-color: #212731;
+		box-shadow: 0 0 9px #736f6f5e;
+
+		transition: 0.3s ease;
+
+		& form {
+			width: 100%;
+			display: flex;
+		}
+
+		& span {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		&:hover {
+			background-color: #20252f;
+			box-shadow: 0 0 9px #736f6fad;
+		}
+
+		&.completed {
+			span {
+				color: #999999;
+				text-decoration: line-through;
+			}
+		}
+
+		span,
+		input {
+			flex-grow: 1;
+			font-size: 1rem;
+			cursor: pointer;
+			user-select: none;
+			transition: color 0.3s ease;
+		}
+
+		input[type="text"] {
+			flex-grow: 1;
+			border: 1.5px solid #a8c0e8;
+			border-radius: 6px;
+			padding: 4px 0.75rem;
+			font-size: 1rem;
+			transition: border-color 0.3s ease;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		button {
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: #4a90e2;
+			font-weight: 600;
+			padding: 0 0.5rem;
+			font-size: 0.9rem;
+			transition: color 0.3s ease;
+
+			&:hover {
+				color: #3a73c2;
+			}
+
+			&:last-child {
+				color: #fe6464;
+
+				&:hover {
+					color: rgb(225, 91, 91);
+				}
+			}
+		}
+	}
+
+	button:disabled {
+		background-color: #a8bfe89a;
+		border: none;
+		color: white;
+		cursor: not-allowed;
+	}
+}

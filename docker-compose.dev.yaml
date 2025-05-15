@@ -1,0 +1,41 @@
+services:
+    db_todo:
+        image: postgres:latest        
+        environment:
+            - POSTGRES_DB=${POSTGRES_DB}
+            - POSTGRES_USER=${POSTGRES_DB}
+            - POSTGRES_PASSWORD=${POSTGRES_DB}
+        volumes:
+            - ./pg_data:/var/lib/postgresql/data
+
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_DB} -d ${POSTGRES_DB}"]
+            interval: 10s
+            retries: 5
+            start_period: 30s
+            timeout: 10s
+
+    backend_todo:
+        build:
+            context: ./backend
+        ports:
+            - 8000:8000
+        volumes:
+            - ./backend:/app
+        environment:
+            - SECRET_KEY=${KEY}
+            - POSTGRES_NAME=${POSTGRES_DB}
+            - POSTGRES_USER=${POSTGRES_DB}
+            - POSTGRES_PASSWORD=${POSTGRES_DB}
+            - POSTGRES_HOST=${POSTGRES_DB_HOST}
+            - POSTGRES_PORT=${POSTGRES_DB_PORT}
+            - CRYPTO_AUTH_TOKEN_SHUFFLE=${CRYPTO_AUTH_TOKEN_SHUFFLE}
+            - DJANGO_USER_PASSWORD=${DJANGO_USER_PASSWORD}
+            - DJANGO_USER_USERNAME=${DJANGO_USER_USERNAME}
+            - DJANGO_USER_EMAIL=${DJANGO_USER_EMAIL}
+            - DEBUG=true
+        command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+        depends_on:
+            db_todo:
+                condition: service_healthy
+                restart: true

@@ -1,0 +1,5 @@
+django==5.2
+djangorestframework==3.14.0
+django-cors-headers==4.7.0
+psycopg2-binary==2.9.10
+git+https://github.com/marceb1296/django_crypto_auth.git@with-pip
